@@ -4,3 +4,9 @@ node_modules/
 .env.local
 *.tsbuildinfo
 next-env.d.ts
+
+# Vercel env (contains secrets)
+.vercel/.env.production.local
+.vercel/.env.*.local
+.vercel/output/
+*.bak
