@@ -1,0 +1,41 @@
+.ag-theme-quartz {
+  --ag-font-size: 12px;
+  --ag-cell-horizontal-padding: 4px;
+  --ag-grid-size: 4px;
+  --ag-list-item-height: 22px;
+  --ag-row-height: 32px;
+  --ag-header-height: 28px;
+}
+
+.ag-theme-quartz .ag-header {
+  font-weight: 600;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6B6B6B;
+  border-bottom: 1px solid #E5E0D8;
+}
+
+.ag-theme-quartz .ag-cell {
+  display: flex;
+  align-items: center;
+}
+
+.ag-theme-quartz .ag-row {
+  border-bottom: 1px solid #f0ebe3;
+}
+
+.ag-theme-quartz .ag-row.ag-row-selected {
+  background-color: rgba(79, 126, 90, 0.06);
+}
+
+.ag-theme-quartz .ag-cell.price-cell {
+  justify-content: flex-end;
+  font-weight: 600;
+  color: #4F7E5A;
+}
+
+.ag-theme-quartz input[class^="ag-"],
+.ag-theme-quartz select[class^="ag-"] {
+  font-size: 12px;
+}

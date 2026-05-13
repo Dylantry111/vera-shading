@@ -1,0 +1,120 @@
+import Link from "next/link";
+import ShutterIllustration from "@/components/ShutterIllustration";
+
+const PRODUCTS = [
+  { series: "VERA Eco", material: "PVC", tag: "Entry", img: "entry" as const, href: "/products/pvc", tier: "entry" as const },
+  { series: "VERA Classic", material: "PVC Premium", tag: "Standard", img: "classic" as const, href: "/products/pvc-premium", tier: "standard" as const },
+  { series: "VERA Natural", material: "Pinewood", tag: "Entry", img: "entry" as const, href: "/products/pinewood", tier: "entry" as const },
+  { series: "VERA Prime", material: "Basswood", tag: "Standard", img: "classic" as const, href: "/products/basswood", tier: "standard" as const },
+  { series: "VERA Deluxe", material: "Ashwood", tag: "Flagship", img: "premium" as const, href: "/products/ashwood", tier: "premium" as const },
+];
+
+export default function HomePage() {
+  return (
+    <>
+      {/* Hero */}
+      <section className="bg-green-dark relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="flex items-center gap-2 mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-warm/60" />
+                <span className="text-warm/60 text-xs font-semibold uppercase tracking-widest">Wholesale Supply — NZ Wide</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight text-balance">
+                Plantation Shutters
+                <span className="block mt-2 text-warm/70">for New Zealand Trade</span>
+              </h1>
+              <p className="mt-6 text-warm/60 text-lg leading-relaxed max-w-lg">
+                VERA supplies builders, designers, and retail shops with consistent-quality
+                plantation shutters. Five product grades, competitive trade pricing,
+                reliable stock, nationwide delivery.
+              </p>
+              <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                <Link href="/contact" className="px-8 py-3.5 bg-white text-green font-semibold text-sm hover:bg-warm transition-all text-center">
+                  Open a Trade Account
+                </Link>
+                <Link href="/products" className="px-8 py-3.5 border border-warm/20 text-white font-semibold text-sm hover:border-warm/50 transition-all text-center">
+                  View Product Range
+                </Link>
+              </div>
+            </div>
+            <div className="hidden md:block">
+              <ShutterIllustration variant="hero" className="w-full rounded" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      {/* 5 Series Grid */}
+      <section className="py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink">Five Series</h2>
+            <p className="mt-3 text-stone">From entry-level PVC to premium Ashwood — covering every project and budget.</p>
+          </div>
+          <div className="grid md:grid-cols-5 gap-4">
+            {PRODUCTS.map((p) => (
+              <Link key={p.series} href={p.href} className={`group bg-white border ${p.tier === "premium" ? "border-green" : "border-border hover:border-green/30"} transition-colors`}>
+                <ShutterIllustration variant={p.img} className="w-full h-36 object-cover" />
+                <div className="p-4">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs uppercase tracking-[0.15em] text-stone font-medium">{p.series}</span>
+                    <span className={`text-[10px] font-semibold uppercase tracking-wider ${p.tier === "premium" ? "text-green" : "text-stone"}`}>{p.tag}</span>
+                  </div>
+                  <h3 className="text-sm font-bold text-ink">{p.material}</h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trust */}
+      <section className="bg-warm border-y border-border py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { title: "Consistent Quality", desc: "Every batch same standard. No surprises between orders." },
+              { title: "Reliable Supply", desc: "Stock-ready with short lead times. NZ-wide delivery." },
+              { title: "Trade Pricing", desc: "Wholesale rates designed for healthy margins." },
+            ].map((item) => (
+              <div key={item.title} className="bg-white p-8 border border-border">
+                <div className="w-10 h-10 border border-green flex items-center justify-center mb-4">
+                  <span className="text-green font-bold text-sm">{item.title[0]}</span>
+                </div>
+                <h3 className="text-lg font-semibold text-ink mb-2">{item.title}</h3>
+                <p className="text-stone text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trusted by */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-xs uppercase tracking-widest text-stone mb-6">Trusted by trade professionals across NZ</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-4">
+            {["Builders", "Interior Designers", "Retail Shops", "Property Developers", "Architects"].map((item) => (
+              <span key={item} className="text-stone-light text-sm tracking-wide uppercase">{item}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-green-dark py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white">Ready to Partner?</h2>
+          <p className="mt-4 text-warm/60 max-w-xl mx-auto">Open a trade account — wholesale pricing, product samples, dedicated support.</p>
+          <div className="mt-8">
+            <Link href="/contact" className="inline-block px-10 py-4 bg-white text-green font-semibold hover:bg-warm transition-all text-lg">Become a Trade Partner</Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

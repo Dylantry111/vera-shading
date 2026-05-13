@@ -1,0 +1,16 @@
+{
+  "projectId": "prj_VZpJ8GWdbAF3BtLKxfIE6JDPpWPI",
+  "orgId": "team_6f64fh0dXED3sr1YbVd5lCpH",
+  "projectName": "vera-shading",
+  "settings": {
+    "createdAt": 1778453794745,
+    "framework": "nextjs",
+    "devCommand": null,
+    "installCommand": null,
+    "buildCommand": null,
+    "outputDirectory": null,
+    "rootDirectory": null,
+    "directoryListing": false,
+    "nodeVersion": "24.x"
+  }
+}

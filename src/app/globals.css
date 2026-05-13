@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #111111;
+  --color-ink-light: #222222;
+  --color-green: #4F7E5A;
+  --color-green-light: #6B9E76;
+  --color-green-dark: #2E5E3A;
+  --color-green-bg: rgba(79, 126, 90, 0.1);
+  --color-gray-50: #F8F9FA;
+  --color-gray-100: #F1F3F5;
+  --color-gray-200: #E9ECEF;
+  --color-gray-300: #DEE2E6;
+  --color-gray-400: #CED4DA;
+  --color-gray-500: #ADB5BD;
+  --color-gray-600: #6C757D;
+  --color-gray-700: #495057;
+  --color-gray-800: #343A40;
+  --color-gray-900: #212529;
+  --color-gray-bg: rgba(108, 117, 125, 0.08);
+  --color-white: #FFFFFF;
+  --color-warm: #F1F3F5;
+  --color-warm-dark: #E9ECEF;
+  --color-stone: #6C757D;
+  --color-stone-light: #ADB5BD;
+  --color-border: #DEE2E6;
+  --color-surface: #F8F9FA;
+  --animate-slide-up: slideUp 0.3s ease-out;
+  --animate-pulse-fast: pulseFast 1s ease-in-out infinite;
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulseFast {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.65; }
+  }
+}
+
+@layer base {
+  body {
+    color: var(--color-ink);
+    background: var(--color-surface);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
