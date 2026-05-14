@@ -42,55 +42,57 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="text-center py-12">
-        <div className="w-16 h-16 rounded-full bg-green/10 flex items-center justify-center mx-auto mb-4">
-          <svg className="w-8 h-8 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+      <div className="py-12 text-center">
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-brand-gold-muted)]">
+          <svg className="h-8 w-8 text-[var(--color-brand-gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
         </div>
         <h3 className="text-xl font-bold text-ink">Thank You</h3>
-        <p className="mt-2 text-stone">We&apos;ll be in touch shortly with trade pricing and product information.</p>
+        <p className="mt-2 text-stone leading-7">We&apos;ll be in touch shortly with trade pricing and product information.</p>
       </div>
     );
   }
 
+  const fieldClass = "w-full rounded-2xl border border-border bg-white/80 px-4 py-3 text-sm text-ink transition-all focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-gold)]/30 focus:border-[var(--color-brand-gold)]";
+
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <label className="block text-sm font-medium text-ink mb-1">Name <span className="text-red-400">*</span></label>
-        <input type="text" required value={form.full_name} onChange={e => handleChange("full_name", e.target.value)} className="w-full px-4 py-2.5 rounded border border-border bg-warm text-sm focus:outline-none focus:ring-2 focus:ring-green/40 focus:border-green transition-colors" placeholder="Your full name" />
+        <label className="mb-1.5 block text-sm font-medium text-ink">Name <span className="text-red-400">*</span></label>
+        <input type="text" required value={form.full_name} onChange={e => handleChange("full_name", e.target.value)} className={fieldClass} placeholder="Your full name" />
       </div>
       <div>
-        <label className="block text-sm font-medium text-ink mb-1">Company / Business Name</label>
-        <input type="text" value={form.company} onChange={e => handleChange("company", e.target.value)} className="w-full px-4 py-2.5 rounded border border-border bg-warm text-sm focus:outline-none focus:ring-2 focus:ring-green/40 focus:border-green transition-colors" placeholder="Your company name" />
+        <label className="mb-1.5 block text-sm font-medium text-ink">Company / Business Name</label>
+        <input type="text" value={form.company} onChange={e => handleChange("company", e.target.value)} className={fieldClass} placeholder="Your company name" />
       </div>
-      <div className="grid sm:grid-cols-2 gap-4">
+      <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="block text-sm font-medium text-ink mb-1">Phone</label>
-          <input type="tel" value={form.phone} onChange={e => handleChange("phone", e.target.value)} className="w-full px-4 py-2.5 rounded border border-border bg-warm text-sm focus:outline-none focus:ring-2 focus:ring-green/40 focus:border-green transition-colors" placeholder="021 123 4567" />
+          <label className="mb-1.5 block text-sm font-medium text-ink">Phone</label>
+          <input type="tel" value={form.phone} onChange={e => handleChange("phone", e.target.value)} className={fieldClass} placeholder="021 123 4567" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-ink mb-1">Email</label>
-          <input type="email" value={form.email} onChange={e => handleChange("email", e.target.value)} className="w-full px-4 py-2.5 rounded border border-border bg-warm text-sm focus:outline-none focus:ring-2 focus:ring-green/40 focus:border-green transition-colors" placeholder="you@company.com" />
+          <label className="mb-1.5 block text-sm font-medium text-ink">Email</label>
+          <input type="email" value={form.email} onChange={e => handleChange("email", e.target.value)} className={fieldClass} placeholder="you@company.com" />
         </div>
       </div>
       <div>
-        <label className="block text-sm font-medium text-ink mb-1">Business Type</label>
-        <select value={form.business_type} onChange={e => handleChange("business_type", e.target.value)} className="w-full px-4 py-2.5 rounded border border-border bg-warm text-sm focus:outline-none focus:ring-2 focus:ring-green/40 focus:border-green transition-colors">
+        <label className="mb-1.5 block text-sm font-medium text-ink">Business Type</label>
+        <select value={form.business_type} onChange={e => handleChange("business_type", e.target.value)} className={fieldClass}>
           {BUSINESS_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
         </select>
       </div>
       <div>
-        <label className="block text-sm font-medium text-ink mb-1">Interested in</label>
-        <select value={form.product_interest} onChange={e => handleChange("product_interest", e.target.value)} className="w-full px-4 py-2.5 rounded border border-border bg-warm text-sm focus:outline-none focus:ring-2 focus:ring-green/40 focus:border-green transition-colors">
+        <label className="mb-1.5 block text-sm font-medium text-ink">Interested in</label>
+        <select value={form.product_interest} onChange={e => handleChange("product_interest", e.target.value)} className={fieldClass}>
           <option value="">Please select...</option>
           {PRODUCT_INTEREST.map(o => <option key={o} value={o}>{o}</option>)}
         </select>
       </div>
       <div>
-        <label className="block text-sm font-medium text-ink mb-1">Message (optional)</label>
-        <textarea rows={4} value={form.message} onChange={e => handleChange("message", e.target.value)} className="w-full px-4 py-2.5 rounded border border-border bg-warm text-sm focus:outline-none focus:ring-2 focus:ring-green/40 focus:border-green transition-colors resize-y" placeholder="Tell us about your business..." />
+        <label className="mb-1.5 block text-sm font-medium text-ink">Message (optional)</label>
+        <textarea rows={4} value={form.message} onChange={e => handleChange("message", e.target.value)} className={`${fieldClass} resize-y`} placeholder="Tell us about your business..." />
       </div>
-      {status === "error" && <div className="p-3 rounded bg-red-50 text-red-700 text-sm">{errorMsg}</div>}
-      <button type="submit" disabled={status === "sending"} className="w-full px-6 py-3 rounded bg-green text-white font-semibold hover:bg-green-light transition-all disabled:opacity-50">Submit Trade Enquiry</button>
+      {status === "error" && <div className="rounded-2xl bg-red-50 p-3 text-sm text-red-700">{errorMsg}</div>}
+      <button type="submit" disabled={status === "sending"} className="w-full rounded-2xl bg-[var(--color-brand-gold)] px-6 py-3.5 font-semibold text-white shadow-[0_14px_30px_rgba(180,151,90,0.24)] transition-all hover:opacity-92 disabled:opacity-50">Submit Trade Enquiry</button>
     </form>
   );
 }

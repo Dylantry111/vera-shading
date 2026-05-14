@@ -26,58 +26,71 @@ const series = [
 ];
 
 export default function ProductsPage() {
+  const comparisonRows = [
+    ["Material", "PVC", "PVC Premium", "Pinewood", "Basswood", "Ashwood"],
+    ["Warranty", "5 years", "20 years", "5 years", "10 years", "10 years"],
+    ["Louvers", "63mm, 76mm, 89mm, 114mm", "63mm, 76mm, 89mm, 114mm", "63mm, 76mm, 89mm, 114mm", "63mm, 76mm, 89mm, 114mm", "63mm, 76mm, 89mm, 114mm"],
+    ["Colours", "White 01", "White 01, Dusk 02, Soft Glow 03, Old Moon 04, Oyster 05, Sea Pearl 06, Picaso 07, Chalk 08", "White 01, Dusk 02, Soft Glow 03, Old Moon 04, Oyster 05, Sea Pearl 06, Picaso 07, Chalk 08", "White 01, Dusk 02, Soft Glow 03, Old Moon 04, Oyster 05, Sea Pearl 06, Picaso 07, Chalk 08, Golden Oak 61, Fruitwood 62, Old Mahogany 63, Coffee Bean 64, BlackWalnut 65, Light Ash 66, Limed 67, Natural 68, Rustic Gray 69, Provence Blue 70", "Golden Oak 61, Fruitwood 62, Old Mahogany 63, Coffee Bean 64, BlackWalnut 65, Light Ash 66, Limed 67, Natural 68, Rustic Gray 69, Provence Blue 70"],
+    ["Moisture resistance", "Full", "Full", "Low", "Low", "Low"],
+  ];
+
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-      <div className="max-w-2xl mb-12">
-        <span className="text-stone text-xs font-semibold uppercase tracking-widest">Product Range</span>
-        <h1 className="text-4xl md:text-5xl font-bold text-ink mt-2">Five Series</h1>
-        <p className="mt-3 text-stone text-lg">From entry-level PVC to premium Ashwood.</p>
+      <div className="max-w-3xl mb-12 md:mb-14">
+        <span className="text-[var(--color-brand-gold)] text-xs font-semibold uppercase tracking-[0.22em]">Product Range</span>
+        <h1 className="text-4xl md:text-5xl font-bold text-ink mt-3">Five shutter series for different project requirements</h1>
+        <p className="mt-4 text-stone text-lg leading-8">Choose from moisture-resistant PVC, natural wood options, and premium finishes for residential, retail, and high-end projects.</p>
       </div>
 
-      {/* Card grid */}
-      <div className="grid md:grid-cols-5 gap-4 mb-12">
+      <div className="grid md:grid-cols-5 gap-5 mb-14">
         {series.map((s) => (
-          <Link key={s.slug} href={`/products/${s.slug}`} className="group bg-white border border-border hover:border-green/30 transition-colors">
+          <Link key={s.slug} href={`/products/${s.slug}`} className="group brand-card rounded-[24px] overflow-hidden hover:-translate-y-1 transition-all duration-300">
             <ZoomableImage
               src={s.img}
               fullSrc={s.img.replace('.jpg','.png')}
               alt={s.name}
-              className="w-full h-28 object-cover"
+              className="w-full h-32 object-cover"
             />
-            <div className="p-4">
+            <div className="p-5">
               <div className="flex items-start mb-1">
-                <span className="text-xs uppercase tracking-[0.15em] text-stone font-medium">{s.name}</span>
+                <span className="text-xs uppercase tracking-[0.18em] text-[var(--color-brand-gold)] font-semibold">{s.name}</span>
               </div>
-              <h3 className="text-sm font-bold text-ink">{s.material}</h3>
-              <p className="text-stone text-xs mt-2 leading-relaxed">{s.desc}</p>
-              <span className="inline-block mt-3 text-xs font-semibold text-green group-hover:underline underline-offset-2">View →</span>
+              <h3 className="text-base font-bold text-ink">{s.material}</h3>
+              <p className="text-stone text-sm mt-3 leading-7">{s.desc}</p>
+              <span className="inline-block mt-4 text-xs font-semibold tracking-[0.12em] text-gray-900 group-hover:text-[var(--color-brand-gold)] transition-colors">View Details →</span>
             </div>
           </Link>
         ))}
       </div>
 
-      {/* Comparison table */}
-      <div className="bg-warm border border-border p-6 md:p-8">
-        <h2 className="text-lg font-bold text-ink mb-4">Quick Comparison</h2>
+      <div className="brand-card rounded-[30px] p-6 md:p-8 overflow-hidden">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+          <div>
+            <h2 className="text-2xl font-bold text-ink">Quick Comparison</h2>
+            <p className="mt-2 text-stone leading-7">Compare materials, warranty periods, colours, and moisture resistance across the full VERA range.</p>
+          </div>
+          <span className="text-[11px] uppercase tracking-[0.2em] text-[var(--color-brand-gold)] font-semibold">Series Overview</span>
+        </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full min-w-[920px] text-sm border-separate border-spacing-0">
             <thead>
-              <tr className="border-b border-border">
-                <th className="text-left py-3 font-semibold text-ink w-24"></th>
-                {series.map((s) => <th key={s.slug} className="text-left py-3 font-semibold text-green pr-4">{s.name}</th>)}
+              <tr>
+                <th className="w-28 rounded-l-2xl border border-border bg-[#f1ebe2] px-4 py-4 text-left font-semibold text-ink">Spec</th>
+                {series.map((s, index) => (
+                  <th key={s.slug} className={`border border-border bg-white/70 px-4 py-4 text-left font-semibold text-ink ${index === series.length - 1 ? "rounded-r-2xl" : ""}`}>
+                    <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--color-brand-gold)] mb-1">{s.material}</div>
+                    {s.name}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
-              {[
-                ["Material", "PVC", "PVC Premium", "Pinewood", "Basswood", "Ashwood"],
-                ["Warranty", "5 years", "20 years", "5 years", "10 years", "10 years"],
-                ["Louvers", "63mm, 76mm, 89mm, 114mm", "63mm, 76mm, 89mm, 114mm", "63mm, 76mm, 89mm, 114mm", "63mm, 76mm, 89mm, 114mm", "63mm, 76mm, 89mm, 114mm"],
-                ["Colours", "White 01", "White 01, Dusk 02,<br/>Soft Glow 03, Old Moon 04,<br/>Oyster 05, Sea Pearl 06,<br/>Picaso 07, Chalk 08", "White 01, Dusk 02,<br/>Soft Glow 03, Old Moon 04,<br/>Oyster 05, Sea Pearl 06,<br/>Picaso 07, Chalk 08", "White 01, Dusk 02,<br/>Soft Glow 03, Old Moon 04,<br/>Oyster 05, Sea Pearl 06,<br/>Picaso 07, Chalk 08,<br/>Golden Oak 61, Fruitwood 62,<br/>Old Mahogany 63,<br/>Coffee Bean 64,<br/>BlackWalnut 65, Light Ash 66,<br/>Limed 67, Natural 68,<br/>Rustic Gray 69,<br/>Provence Blue 70", "Golden Oak 61,<br/>Fruitwood 62,<br/>Old Mahogany 63,<br/>Coffee Bean 64,<br/>BlackWalnut 65,<br/>Light Ash 66, Limed 67,<br/>Natural 68, Rustic Gray 69,<br/>Provence Blue 70"],
-                ["Moisture resistance", "Full", "Full", "Low", "Low", "Low"],
-              ].map((row, i) => (
-                <tr key={i} className="border-b border-border/50">
+              {comparisonRows.map((row, i) => (
+                <tr key={i}>
                   {row.map((cell, j) => (
-                    <td key={j} className={`py-2.5 pr-4 ${j === 0 ? "font-medium text-ink" : "text-stone"}`} dangerouslySetInnerHTML={j > 0 && row[0] === "Colours" ? { __html: cell } : undefined}>{j > 0 && row[0] === "Colours" ? null : cell}</td>
+                    <td key={j} className={`align-top border border-border px-4 py-4 leading-6 ${j === 0 ? "bg-[#f8f3eb] font-semibold text-ink" : "bg-white/65 text-stone"}`}>
+                      {cell}
+                    </td>
                   ))}
                 </tr>
               ))}

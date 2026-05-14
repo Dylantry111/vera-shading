@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-NZ">
-      <body className={`${inter.className}`}>
+      <body className={`${inter.className} brand-shell`}>
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />

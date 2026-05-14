@@ -10,9 +10,9 @@ interface Props {
 }
 
 const tierConfig = {
-  entry: { label: "Entry", border: "border-gray-15 hover:border-gray-30" },
-  standard: { label: "Standard", border: "border-gray-15 hover:border-gray-50" },
-  premium: { label: "Premium", border: "border-black hover:border-black" },
+  entry: { label: "Entry", accent: "bg-[#b9ab92]" },
+  standard: { label: "Standard", accent: "bg-[var(--color-brand-gold)]" },
+  premium: { label: "Premium", accent: "bg-[#141414]" },
 };
 
 export default function ProductCard({ series, material, desc, features, href, tier }: Props) {
@@ -21,29 +21,27 @@ export default function ProductCard({ series, material, desc, features, href, ti
   return (
     <Link
       href={href}
-      className={`group block bg-white rounded border ${cfg.border} transition-colors`}
+      className="group block overflow-hidden rounded-[28px] border border-border bg-white/80 shadow-[0_18px_45px_rgba(20,20,20,0.05)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(20,20,20,0.1)]"
     >
-      <div className={`h-1.5 ${tier === "premium" ? "bg-black" : tier === "standard" ? "bg-gray-70" : "bg-gray-30"}`} />
+      <div className={`h-1.5 ${cfg.accent}`} />
 
       <div className="p-6 md:p-8">
-        <div className="flex items-start justify-between mb-3">
+        <div className="mb-4 flex items-start justify-between gap-4">
           <div>
-            <span className="text-xs uppercase tracking-[0.15em] text-gray-70 font-medium">{series}</span>
-            <h3 className="text-xl font-bold text-black mt-0.5">{material}</h3>
+            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-brand-gold)]">{series}</span>
+            <h3 className="mt-1 text-xl font-bold text-ink">{material}</h3>
           </div>
-          <span className={`px-2.5 py-1 text-xs font-semibold border ${
-            tier === "premium" ? "border-black text-black" : "border-gray-30 text-gray-70"
-          }`}>
+          <span className="rounded-full border border-border bg-[#f7f2ea] px-3 py-1 text-xs font-semibold text-stone">
             {cfg.label}
           </span>
         </div>
 
-        <p className="text-gray-70 text-sm leading-relaxed mb-5">{desc}</p>
+        <p className="mb-5 text-sm leading-7 text-stone">{desc}</p>
 
-        <ul className="space-y-2 mb-6">
+        <ul className="mb-6 space-y-2.5">
           {features.map((f) => (
-            <li key={f} className="flex items-center gap-2 text-xs text-gray-70">
-              <svg className="w-4 h-4 text-black shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <li key={f} className="flex items-center gap-2 text-xs text-stone">
+              <svg className="h-4 w-4 shrink-0 text-[var(--color-brand-gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               {f}
@@ -51,7 +49,7 @@ export default function ProductCard({ series, material, desc, features, href, ti
           ))}
         </ul>
 
-        <span className="inline-flex items-center gap-1 text-sm font-semibold text-black group-hover:gap-2 transition-all">
+        <span className="inline-flex items-center gap-1 text-sm font-semibold text-ink transition-all group-hover:gap-2 group-hover:text-[var(--color-brand-gold)]">
           View Details →
         </span>
       </div>
